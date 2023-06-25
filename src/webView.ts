@@ -10,7 +10,7 @@ export function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptio
 		// Enable javascript in the webview
 		enableScripts: true,
 		// And restrict the webview to only loading content from our extension's `media` directory.
-		localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'assets')]
+		localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'dist')]
 	};
 }
 
@@ -128,7 +128,7 @@ export class GraphView {
 
 	private _getHtmlForWebview(webview: vscode.Webview, graphScripPath: string) {
 		// Local path to main script run in the webview
-		const scriptPathOnDisk = vscode.Uri.joinPath(this._extensionUri, 'assets', 'main.js');
+		const scriptPathOnDisk = vscode.Uri.joinPath(this._extensionUri, 'dist', 'bundle.js');
 
 		// And the uri we use to load this script in the webview
 		const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
@@ -162,15 +162,15 @@ export class GraphView {
 
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
 				<title>Cat Coding</title>
 			</head>
 			<body>
 				<img src="${graphScripPath}" width="300" />
 				<h1 id="lines-of-code-counter">0</h1>
+				<svg id="circle"></svg>
 
 				<script nonce="${nonce}" src="${scriptUri}"></script>
+
 			</body>
 			</html>`;
 	}

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import {getWebviewOptions, GraphView} from './webView'
+import {getWebviewOptions, GraphView} from './webView';
 
 
 
